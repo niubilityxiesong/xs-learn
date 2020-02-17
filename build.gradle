@@ -4,12 +4,12 @@ plugins {
 	id 'java'
 }
 
-"cp pre-push.sh .git/hooks/pre-push".execute()
-"chmod 744 .git/hooks/pre-push".execute()
-
 group = 'self-learning'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+"cp pre-push.sh .git/hooks/pre-push".execute()
+"chmod 744 .git/hooks/pre-push".execute()
 
 configurations {
 	developmentOnly
