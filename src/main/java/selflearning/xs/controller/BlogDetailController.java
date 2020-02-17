@@ -1,5 +1,7 @@
 package selflearning.xs.controller;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,12 +14,10 @@ import selflearning.xs.service.BlogDetailService;
 
 @RestController
 @RequestMapping("/blog-detail")
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class BlogDetailController {
-    private final BlogDetailService blogDetailService;
 
-    public BlogDetailController(BlogDetailService blogDetailService) {
-        this.blogDetailService = blogDetailService;
-    }
+    private final BlogDetailService blogDetailService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
