@@ -1,3 +1,6 @@
+"cp pre-push.sh .git/hooks/pre-push".execute()
+"chmod 744 .git/hooks/pre-push".execute()
+
 plugins {
 	id 'org.springframework.boot' version '2.2.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
@@ -7,9 +10,6 @@ plugins {
 group = 'self-learning'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
-
-"cp pre-push.sh .git/hooks/pre-push".execute()
-"chmod 744 .git/hooks/pre-push".execute()
 
 configurations {
 	developmentOnly
