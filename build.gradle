@@ -1,11 +1,16 @@
-"cp pre-push.sh .git/hooks/pre-push".execute()
-"chmod 744 .git/hooks/pre-push".execute()
-
 plugins {
 	id 'org.springframework.boot' version '2.2.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 }
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+"cp pre-push.sh .git/hooks/pre-push".execute()
+"chmod 744 .git/hooks/pre-push".execute()
 
 group = 'self-learning'
 version = '0.0.1-SNAPSHOT'
