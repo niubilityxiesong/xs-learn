@@ -9,6 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BlogDetailDTO {
     private String type;
-    private Long wordNumber;
+    private String content;
     private String author;
+
+    public Long getWordNumber() {
+        return (long) this.content.length();
+    }
 }

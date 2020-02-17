@@ -20,7 +20,7 @@ class BlogDetailControllerTest extends BaseTestSetup {
 
     @Test
     void should_create_blog_detail() {
-        final BlogDetailDTO blogDetailDTO = new BlogDetailDTO("test", 200L, "xsTest");
+        final BlogDetailDTO blogDetailDTO = new BlogDetailDTO("test", "Test word length", "xs");
         given()
                 .body(blogDetailDTO)
                 .when()
@@ -30,8 +30,8 @@ class BlogDetailControllerTest extends BaseTestSetup {
 
         final List<BlogDetail> blogDetails = blogDetailRepository.findAll();
         assertThat(blogDetails.size(), is(1));
-        assertThat(blogDetails.get(0).getWordNumber(), is(200L));
-        assertThat(blogDetails.get(0).getAuthor(), is("xsTest"));
+        assertThat(blogDetails.get(0).getWordNumber(), is(16L));
+        assertThat(blogDetails.get(0).getAuthor(), is("xs"));
         assertThat(blogDetails.get(0).getType(), is("test"));
     }
 }

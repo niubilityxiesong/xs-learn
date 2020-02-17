@@ -24,6 +24,8 @@ public class BlogDetail {
 
     private String type;
 
+    private String content;
+
     private Long wordNumber;
 
     private String author;
