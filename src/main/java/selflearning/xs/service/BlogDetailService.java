@@ -19,7 +19,8 @@ public class BlogDetailService {
 
     public BlogDetail create(BlogDetailDTO blogDetailDTO, User user) {
         final BlogDetail blogDetail = blogDetailMapper.DtoToBlogDetail(blogDetailDTO);
+        final BlogDetail detail = blogDetailRepository.save(blogDetail);
         EventPublisher.publish(new UserEvent(this, user));
-        return blogDetailRepository.save(blogDetail);
+        return detail;
     }
 }
