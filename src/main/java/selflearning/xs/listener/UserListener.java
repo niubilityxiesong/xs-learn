@@ -17,7 +17,7 @@ public class UserListener implements ApplicationListener<UserEvent> {
 
     @Override
     public void onApplicationEvent(UserEvent userEvent) {
-        log.info("im in ~");
+        log.info("im in user event");
         final User user = userEvent.getUser();
         user.setArticleNumber(user.getArticleNumber() + 1);
         userRepository.save(user);
