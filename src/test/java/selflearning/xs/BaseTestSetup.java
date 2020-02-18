@@ -12,6 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.context.WebApplicationContext;
 import selflearning.xs.repository.BlogDetailRepository;
+import selflearning.xs.repository.UserRepository;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = XsApplication.class)
@@ -39,5 +40,6 @@ public class BaseTestSetup {
     @AfterEach
     public void cleanUp() {
         SpringApplicationContext.getBean(BlogDetailRepository.class).deleteAll();
+        SpringApplicationContext.getBean(UserRepository.class).deleteAll();
     }
 }
