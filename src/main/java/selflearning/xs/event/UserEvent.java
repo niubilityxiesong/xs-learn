@@ -6,9 +6,9 @@ import selflearning.xs.entity.User;
 public class UserEvent extends ApplicationEvent {
     private User user;
 
-    public UserEvent(Object source, User user) {
+    public UserEvent(User source) {
         super(source);
-        this.user = user;
+        this.user = source;
     }
 
     public User getUser() {
