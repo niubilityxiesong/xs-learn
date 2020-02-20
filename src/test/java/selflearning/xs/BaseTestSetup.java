@@ -25,7 +25,7 @@ public class BaseTestSetup {
     private SpringApplicationContext springApplicationContext;
 
     @BeforeEach
-    public void setup() {
+    public void setUp() {
         RestAssuredMockMvc.webAppContextSetup(webApplicationContext);
         springApplicationContext.setApplicationContext(webApplicationContext);
     }

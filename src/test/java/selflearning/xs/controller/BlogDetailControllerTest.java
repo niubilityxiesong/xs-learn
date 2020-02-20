@@ -38,7 +38,7 @@ class BlogDetailControllerTest extends BaseTestSetup {
 
     @Override
     @BeforeEach
-    public void setup() {
+    public void setUp() {
         RestAssuredMockMvc.webAppContextSetup(webApplicationContext);
         springApplicationContext.setApplicationContext(webApplicationContext);
         final User user = new User(1L,"xs", "12345678", "test", 0);

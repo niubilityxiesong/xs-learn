@@ -11,6 +11,8 @@ group = 'self-learning'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+apply plugin: 'pmd'
+
 configurations {
 	developmentOnly
 	runtimeClasspath {
@@ -20,6 +22,13 @@ configurations {
 
 repositories {
 	mavenCentral()
+}
+
+pmd {
+	toolVersion = '6.9.0'
+	sourceSets = [sourceSets.main, sourceSets.test]
+	ruleSets = []
+	ruleSetFiles("config/pmd-ruleSets.xml")
 }
 
 dependencies {
