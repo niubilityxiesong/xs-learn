@@ -76,4 +76,15 @@ class BlogDetailControllerTest extends BaseTestSetup {
         final User result = userRepository.findAll().get(0);
         assertThat(result.getArticleNumber(), is(1));
     }
+
+    @Test
+    void should_throw_exception_when_user_id_do_not_exist() {
+        given()
+                .body(blogDetailDTO)
+                .param("userId", 0L)
+                .when()
+                .post("/blog-detail")
+                .then()
+                .statusCode(HttpStatus.NOT_FOUND.value());
+    }
 }

@@ -15,6 +15,7 @@ import selflearning.xs.entity.User;
 import selflearning.xs.exceptions.UserIdNotExistException;
 import selflearning.xs.repository.UserRepository;
 import selflearning.xs.service.BlogDetailService;
+import selflearning.xs.service.UserService;
 
 import java.util.Optional;
 
@@ -24,16 +25,12 @@ import java.util.Optional;
 public class BlogDetailController {
 
     private final BlogDetailService blogDetailService;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public BlogDetail createBlog(@RequestBody BlogDetailDTO blogDetail, @RequestParam Long userId) {
-        final Optional<User> optionalUser = userRepository.findById(userId);
-        if (optionalUser.isPresent()) {
-            return blogDetailService.create(blogDetail, optionalUser.get());
-        } else {
-            throw new UserIdNotExistException(String.format("userId: %d do not exist", userId), userId);
-        }
+        final User user = userService.getUserById(userId);
+        return blogDetailService.create(blogDetail, user);
     }
 }
