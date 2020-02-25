@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import selflearning.xs.dto.BlogDetailDTO;
 import selflearning.xs.entity.BlogDetail;
 import selflearning.xs.entity.User;
+import selflearning.xs.exceptions.UserIdNotExistException;
 import selflearning.xs.repository.UserRepository;
 import selflearning.xs.service.BlogDetailService;
 
@@ -29,6 +30,10 @@ public class BlogDetailController {
     @ResponseStatus(HttpStatus.CREATED)
     public BlogDetail createBlog(@RequestBody BlogDetailDTO blogDetail, @RequestParam Long userId) {
         final Optional<User> optionalUser = userRepository.findById(userId);
-        return optionalUser.map(user -> blogDetailService.create(blogDetail, user)).orElse(null);
+        if (optionalUser.isPresent()) {
+            return blogDetailService.create(blogDetail, optionalUser.get());
+        } else {
+            throw new UserIdNotExistException(String.format("userId: %d do not exist", userId), userId);
+        }
     }
 }
