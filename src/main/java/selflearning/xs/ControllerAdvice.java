@@ -14,8 +14,6 @@ public class ControllerAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResult handleUserIdNotExistException(UserIdNotExistException ex) {
         log.warn(ex.getMessage());
-        final ErrorResult errorResult = new ErrorResult(ex.getErrorCode());
-        errorResult.setMessage(ex.getUserId().toString());
-        return errorResult;
+        return new ErrorResult(ex.getErrorCode(), ex.getMessage());
     }
 }
