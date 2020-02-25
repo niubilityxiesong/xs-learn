@@ -1,10 +1,11 @@
 package selflearning.xs.service;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import selflearning.xs.exceptions.ErrorCode;
 import selflearning.xs.exceptions.UserIdNotExistException;
 import selflearning.xs.repository.UserRepository;
 
@@ -14,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(SpringExtension.class)
 class UserServiceTest {
 
     @Mock
@@ -21,11 +23,6 @@ class UserServiceTest {
 
     @InjectMocks
     private UserService userService;
-
-    @BeforeEach
-    void init() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     void should_return_exception_when_user_id_not_exist() {
@@ -36,5 +33,6 @@ class UserServiceTest {
                 () -> userService.getUserById(userId));
         assertEquals("userId: 1 do not exist", ex.getMessage());
         assertEquals(userId, ex.getUserId());
+        assertEquals(ErrorCode.USER_ID_NOT_EXIST, ex.getErrorCode());
     }
 }
